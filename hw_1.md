@@ -30,7 +30,7 @@
 2. Установил Docker, docker-compose, git, zsh и др. для удобства работы. 
 3. Установил Wordpress, используя [официальный image](https://hub.docker.com/_/wordpress), загруженный с Docker Hub
 4. Настроил пробросы портов на виртуальную машину для получения сертификата Let's Encrypt на nginx в Wordpress
-5. Запустил [certbot в docker-е]((https://hub.docker.com/r/certbot/certbot) для получения сертификата для домена [lab.cherepnin.ru](http://lab.cherepnin.ru)
+5. Запустил [certbot в docker](https://hub.docker.com/r/certbot/certbot) для получения сертификата для домена [lab.cherepnin.ru](http://lab.cherepnin.ru)
 
 
 Результирующий набор открытых портов:
