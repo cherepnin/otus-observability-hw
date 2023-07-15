@@ -28,7 +28,7 @@
 # Решение
 1. Установил Virtualbox + Ubuntu Server 22.04
 2. Установил Docker, docker-compose, git, zsh и др. для удобства работы. 
-3. Установил Wordpress, используя [официальный image]([url](https://hub.docker.com/_/wordpress)), загруженный с Docker Hub
+3. Установил Wordpress, используя [официальный image](https://hub.docker.com/_/wordpress), загруженный с Docker Hub
 4. Настроил пробросы портов на виртуальную машину для получения сертификата Let's Encrypt на nginx в Wordpress
 5
 
