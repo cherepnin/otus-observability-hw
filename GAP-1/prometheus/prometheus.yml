@@ -1,0 +1,62 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 5s
+scrape_configs:
+  - job_name: prometheus
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - 'localhost:9090'
+    metrics_path: /metrics
+  - job_name: nginx-exporter
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - 'nginx-exporter:9113'
+    metrics_path: /metrics
+  - job_name: node-exporter
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - 'node-exporter:9100'
+    metrics_path: /metrics
+  - job_name: wordpress-exporter
+    honor_timestamps: true
+    scrape_timeout: 3s
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets: 
+        - '192.168.254.37:9112'
+  - job_name: blackbox-http
+    honor_timestamps: true
+    params:
+      module:
+        - http_2xx
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    metrics_path: /metrics
+    scheme: http
+    follow_redirects: true
+    relabel_configs:
+      - source_labels: [__address__]
+        separator: ;
+        regex: (.*)
+        target_label: __param_target
+        replacement: $1
+        action: replace
+      - source_labels: [__param_target]
+        separator: ;
+        regex: (.*)
+        target_label: instance
+        replacement: $1
+        action: replace
+      - separator: ;
+        regex: (.*)
+        target_label: __address__
+        replacement: blackbox-exporter:9115
+        action: replace
+    static_configs:
+      - targets:
+          - https://otus.ru
+          - http://webserver
