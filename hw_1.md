@@ -32,23 +32,10 @@
 1. Установил Virtualbox + Ubuntu Server 22.04
 2. Установил Docker, docker-compose, git, zsh и др. для удобства работы. 
 3. Установил Wordpress, используя [официальный image](https://hub.docker.com/_/wordpress), загруженный с Docker Hub
-4. Настроил пробросы портов на виртуальную машину для получения сертификата Let's Encrypt на nginx в Wordpress
-5. Запустил [certbot в docker](https://hub.docker.com/r/certbot/certbot) для получения сертификата для домена [lab.cherepnin.ru](http://lab.cherepnin.ru) Должно пригодиться для решения задачи со звездочкой.
-6. Долго-долго гуглил, ставил экспортеры, правил конфиги, правил свои ошибки...
-7. Все собралось, запустилось. Сделал скриншот
+4. Долго-долго гуглил, ставил экспортеры, правил конфиги, правил свои ошибки...
+5. Все собралось, запустилось. Сделал скриншот
 
 ![Результат](GAP-1/result_hw_1.png)
 
 
 PS: задание со звездочкой начал делать, но не успел. Мысль была такая: заблокировать все порты фаерволом, а далее с промощью Nginx добавить location для Prometheus-а.
-
-Результирующий набор открытых портов:
-- localhost: 80 # Nginx
-- localhost: 443 # Nginx
-- localhost: 3306 # MySQL
-- localhost: 9000 # Wordpress container
-- localhost: 9090 # Prometheus
-- localhost: 9100 # Linux OS exporter
-- localhost: 9112 # Wordpress exporter
-- localhost: 9113 # Nginx exporter
-- localhost: 9115 # Blackbox exporter
