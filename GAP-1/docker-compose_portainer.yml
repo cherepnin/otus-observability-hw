@@ -1,0 +1,149 @@
+
+version: '3'
+
+services:
+  ch_db:
+    image: mysql:8.0
+    container_name: ch_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=wordpress
+    volumes: 
+      - ch_dbdata:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - app-network
+ 
+  ch_wordpress:
+    depends_on: 
+      - ch_db
+    image: wordpress:6.2.2-fpm-alpine
+    container_name: ch_wordpress
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - ch_wordpress:/var/www/html
+    networks:
+      - app-network
+
+  ch_webserver:
+    depends_on:
+      - ch_wordpress
+    image: nginx:1.15.12-alpine
+    container_name: ch_webserver
+    hostname: ch_webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ch_wordpress:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - app-network
+
+
+#  certbot:
+#    depends_on:
+#      - webserver
+#    image: certbot/certbot
+#    container_name: certbot
+#    volumes:
+#      - certbot-etc:/etc/letsencrypt
+#      - wordpress:/var/www/html#
+#   command: 
+#     certonly --webroot --webroot-path=/var/www/html --email pavel@cherepnin.ru --agree-tos --no-eff-email --force-renewal -d lab.cherepnin.ru 
+
+
+  ch_prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus:/etc/prometheus/
+    container_name: prometheus
+    hostname: prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    networks:
+      - app-network
+
+
+  ch_prom-nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    hostname: nginx-exporter
+    restart: unless-stopped
+    ports:
+      - 9113:9113
+    command:
+      - -nginx.scrape-uri=http://webserver/basic_status
+      - -nginx.ssl-verify=false
+    networks:
+      - app-network
+
+
+  prom-os-exporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    container_name: node-exporter
+    hostname: node-exporter
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points
+      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
+    ports:
+      - 9100:9100
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    networks:
+      - app-network
+
+  wordpress-exporter:
+    container_name: wordpress-exporter
+    hostname: wordpress-exporter
+    image: ghcr.io/aorfanos/wordpress-exporter/wordpress-exporter:v0.0.8
+    depends_on:
+      - ch_wordpress
+    command:
+      - -host=http://webserver:80/index.php
+      - -auth.basic=false
+    ports:
+      - 9112:11011
+    networks:
+      - app-network
+
+  blackbox-exporter:
+    container_name: blackbox-exporter
+    hostname: blackbox-exporter
+    image: prom/blackbox-exporter:latest
+    restart: unless-stopped
+    volumes:
+      - ./blackbox/config.yml:/config.yml:ro
+    ports:
+      - "9115:9155"
+    networks:
+      - app-network
+
+
+volumes:
+  certbot-etc:
+  ch_wordpress:
+  ch_dbdata:
+
+networks:
+  app-network:
+    driver: bridge
