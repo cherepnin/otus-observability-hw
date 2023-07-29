@@ -1,0 +1,45 @@
+groups:
+
+- name: InstanceIsDown
+  rules:
+
+  - alert: InstanceDown15
+    # Condition for alerting
+    expr: up == 0
+    for: 15s
+    # Annotation - additional informational labels to store more information
+    annotations:
+      title: 'Instance {{ $labels.instance }} down'
+      # description: "A Prometheus target has disappeared. An exporter might be crashed. VALUE = {{ $value }}  LABELS: {{ $labels }}"
+      description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 15 sec.'
+    # Labels - additional labels to be attached to the alert
+    labels:
+      severity: 'warning'
+
+  
+
+- name: WebServerIsDOWN
+  rules:
+  - alert: WebserverIsDOWN
+    # Condition for alerting
+    expr: up == 0
+    for: 15s
+    # Annotation - additional informational labels to store more information
+    annotations:
+      title: 'Instance {{ $labels.instance }} is down!'
+      description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 15 sec.'
+    # Labels - additional labels to be attached to the alert
+    labels:
+      severity: 'critical'
+
+
+# - name: Critical
+#   rules:
+#   - alert: название_правила
+    # expr: выражение_при_истинности_которого_отправится_алерт
+    # for: алерт_будет_отправлен_если_выражение_держится_указанное_время
+    # labels:
+    #   severity: уровень_важности
+    # annotations:
+    #   summary: заголовок_алерта
+    #   description: "Подробное описание алерта {{ $переменная }}"
