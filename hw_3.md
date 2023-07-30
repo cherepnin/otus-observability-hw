@@ -31,4 +31,4 @@ Metrics retention - 2 weeks
 
 Файлы конфигурации docker-compose и Prometheus в папке [HW-3](HW-3)
 
-![Результат](2023-07-30_10-40-09.png)
+![Результат](HW-3/2023-07-30_10-40-09.png)
