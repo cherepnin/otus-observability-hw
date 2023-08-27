@@ -64,7 +64,7 @@
 ![Группировка](GAP-2/app-all-in-one-stats.png)
 
 
-![Wordpress & Nginx](GAP-2/app-all-in-one.png)
+![Wordpress & Nginx](GAP-2/app_all_in_one.png)
 
 
 ![Mysql](GAP-2/app-mysql.png)
