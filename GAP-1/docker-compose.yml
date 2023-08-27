@@ -135,7 +135,7 @@ services:
     volumes:
       - ./blackbox/config.yml:/config.yml:ro
     ports:
-      - "9115:9155"
+      - "9114:9155"
     networks:
       - app-network
 
