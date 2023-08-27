@@ -81,6 +81,6 @@
 
 ![Alert config](GAP-2/tg-alert-config.png)
 
-![Alert message](GAP-2/tg-message.png)
+![Alert message](GAP-2/tg-alert-message.png)
 
 
