@@ -29,5 +29,27 @@
 
 ## Скриншоты подтверждения
 
-### Шаблон
-![Шаблон](hw_5/01_python_script.png)
+### Скрипт
+
+`#!/usr/bin/python3
+from random import randrange
+import json
+
+def get_numbers():
+
+    metric1 = randrange(0,101)
+    metric2 = randrange(0,101)
+    metric3 = randrange(0,101)
+
+    json_result = [
+        {"metric_name":"metric1", "metric_value":metric1 },
+        {"metric_name":"metric2", "metric_value":metric2 },
+        {"metric_name":"metric3", "metric_value":metric3 }
+    ]
+    return json.dumps(json_result)
+
+
+if __name__ == "__main__":
+    print(get_numbers())`
+
+![Скрипт](hw_5/01_python_script.png)
