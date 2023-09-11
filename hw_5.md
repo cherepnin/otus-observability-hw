@@ -31,8 +31,7 @@
 
 ### Скрипт
 
-`#!/usr/bin/python3
-from random import randrange
+`from random import randrange
 import json
 
 def get_numbers():
@@ -53,3 +52,12 @@ if __name__ == "__main__":
     print(get_numbers())`
 
 ![Скрипт](hw_5/01_python_script.png)
+
+
+### Шаблон
+
+![Шаблон](hw_5/02_template.png)
+
+### Основной элемент шаблона
+
+![Основной элемент шаблона](hw_5/03_template_main_item.png)
