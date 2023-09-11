@@ -33,9 +33,7 @@
 
 `from random import randrange
 import json
-
 def get_numbers():
-
     metric1 = randrange(0,101)
     metric2 = randrange(0,101)
     metric3 = randrange(0,101)
@@ -46,8 +44,6 @@ def get_numbers():
         {"metric_name":"metric3", "metric_value":metric3 }
     ]
     return json.dumps(json_result)
-
-
 if __name__ == "__main__":
     print(get_numbers())`
 
@@ -61,3 +57,40 @@ if __name__ == "__main__":
 ### Основной элемент шаблона
 
 ![Основной элемент шаблона](hw_5/03_template_main_item.png)
+
+### Макрос шаблона
+![Макрос шаблона](hw_5/04_template_macro.png)
+
+### Правило обнаружения (discovery)
+![Правило обнаружения (discovery)](hw_5/05_discovery_rule.png)
+
+### Предобработка элемента данных 
+![Предобработка элемента данных](hw_5/06_item_prototype_preprocessing.png)
+
+
+### Макрос LLD
+![Макрос LLD](hw_5/07_discovery_rules_lld_macro.png)
+
+
+### Прототип элемента данных
+![Прототип элемента данных](hw_5/08_item_prototype.png)
+
+
+### Прототип триггера
+![Прототип триггера](hw_5/09_trigger_prototype.png)
+
+
+### График для metric1
+![График для metric1](hw_5/010_metric1_graph.png)
+
+
+### График для metric2
+![График для metric2](hw_5/011_metric2_graph.png)
+
+
+### График для metric3
+![График для metric3](hw_5/012_metric3_graph.png)
+
+
+### Оповещения в телеграмм
+![Оповещения в телеграмм](hw_5/013_telegram_alerts.png)
