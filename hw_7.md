@@ -25,18 +25,38 @@ Filebeat должен собирать логи ssh сервера. По соб�
 
   ## Скриншоты
 
+**Filebeat**
 
 ![Filebeat](hw_7/filebeat.png)
 
+**Модули Filebeat**
+
 ![Модули Filebeat](hw_7/filebeat-modules.png)
+
+**Filebeat SSH**
 
 ![Filebeat SSH](hw_7/filebeat-ssh.png)
 
+**Heartbeat**
+
 ![Heartbeat](hw_7/heartbeat.png)
+
+**Heartbeat Kibana HTTP**
 
 ![Heartbeat Kibana HTTP](hw_7/kibana-heartbeat-http.png)
 
+**Heartbeat Kibana ICMP**
+
 ![Heartbeat Kibana ICMP](hw_7/kibana-heartbeat-icmp.png)
+
+**Metricbeat**
 
 ![Metricbeat](hw_7/metricbeat.png)
 
+**Metricbeat Modules**
+
+![Metricbeat Modules](hw_7/metricbeat-modules.png)
+
+**Metricbeat yml**
+
+![Metricbeat yml](hw_7/metricbeat-yml.png)
