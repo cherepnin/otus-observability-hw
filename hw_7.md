@@ -19,11 +19,24 @@ Filebeat должен собирать логи ssh сервера. По соб�
 1. Установил deb-пакеты, настроил по мануалам с официального сайта. 
 
 Файлы конфигов:
-- [heartbeat.yml](hw_7/heatbeat.yml)
+- [heartbeat.yml](hw_7/heartbeat.yml)
 - [metricbeat.yml](hw_7/metricbeat.yml)
 - [filebeat.yml](hw_7/filebeat.yml)
 
   ## Скриншоты
 
-   ![Модули Filebeat](hw_7/filebeat-modules.png)
+
+![Filebeat](hw_7/filebeat.png)
+
+![Модули Filebeat](hw_7/filebeat-modules.png)
+
+![Filebeat SSH](hw_7/filebeat-ssh.png)
+
+![Heartbeat](hw_7/heartbeat.png)
+
+![Heartbeat Kibana HTTP](hw_7/kibana-heartbeat-http.png)
+
+![Heartbeat Kibana ICMP](hw_7/kibana-heartbeat-icmp.png)
+
+![Metricbeat](hw_7/metricbeat.png)
 
