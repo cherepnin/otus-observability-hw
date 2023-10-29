@@ -13,7 +13,29 @@
 
 1. Запустил в docker контейнеры для Grafana, Loki, promtail
 2. Настроил по мануалам конфиги для всех компонентов
+3. Добавил Loki в источники данных для Grafana
 
-Файлы конфигураций:
- - [Loki-config.yml](hw_9/loki-config.yml)
- - [promtail config](hw_9/promtail-config.yml)
+### Файлы конфигураций:
+ - [loki-config.yml](hw_9/loki-config.yml)
+ - [promtail-config.yml](hw_9/promtail-config.yml)
+
+### Скриншоты
+
+**Конфиг Loki**
+
+![Конфиг Loki](hw_9/loki-cpnfig.png)
+
+**Конфиг promtail**
+
+![Конфиг promtail](hw_9/promtail-config.png)
+
+**Метрики Loki**
+
+![Метрики Loki](hw_9/loki-metrics.png)
+
+**Логи в Grafana**
+
+![Логи в Grafana](hw_9/grafana-metrics.png)
+
+
+
