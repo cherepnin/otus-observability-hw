@@ -1,0 +1,56 @@
+#                                    __   __  __
+#                                    \ \ / / / /
+#                                     \ V / / /
+#                                      \_/  \/
+#
+#                                    V E C T O R
+#                                   Configuration
+#
+# ------------------------------------------------------------------------------
+# Website: https://vector.dev
+# Docs: https://vector.dev/docs
+# Chat: https://chat.vector.dev
+# ------------------------------------------------------------------------------
+
+# Change this to use a non-default directory for Vector data storage:
+# data_dir = "/var/lib/vector"
+
+# Random Syslog-formatted logs
+sources:
+  lab_syslog:
+    type:  file
+    include: 
+      - /var/log/auth.log
+      - /var/log/syslog
+
+
+
+
+
+# Parse Syslog logs
+# See the Vector Remap Language reference for more info: https://vrl.dev
+transforms:
+  parse_logs:
+    type: "remap"
+    inputs: ["lab_syslog"]
+    source: |
+      . = parse_syslog!(string!(.message))
+
+# Print parsed logs to stdout
+sinks:
+  send-to-elastic:
+    type: "elasticsearch"
+    inputs: 
+      - "parse_logs"
+    endpoints:
+      - https://192.168.254.16:9200
+    bulk:
+      index: "vector-%Y-%m-%d"
+    tls:
+      ca_file: "/etc/vector/http_ca.crt"
+    auth:
+      password: "R1Wxe9EKPjBAEFHr-EM*"
+      user: "elastic"
+      strategy: basic
+
+
