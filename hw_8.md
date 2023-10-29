@@ -17,4 +17,21 @@
 ## Скриншоты
 
 **Схема лабы**
-[Схема лабы](hw_8/lab_schame.drawio.png)
+
+![Схема лабы](hw_8/lab_scheme.drawio.png)
+
+
+**Конфиг vector**
+
+![Конфиг vector](hw_8/vector-yaml.png)
+
+
+**Index в интерфейсе Elasticsearch**
+
+![Index в интерфейсе Elasticsearch](hw_8/vector-elastic-index.png)
+
+
+**Полученные данные в интерфейсе Kiabana**
+
+![Полученные данные в интерфейсе Kiabana](hw_8/vector-kibana.png)
+
